@@ -45,7 +45,7 @@ def predict():
     
     classify = preds
     temp_file.close()
-    return jsonify({'result': (pred)}, prediction=classify, image_url=image_url)
+    return jsonify({'result': (preds)})
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
