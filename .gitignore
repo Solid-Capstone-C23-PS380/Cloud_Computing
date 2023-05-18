@@ -1,0 +1,7 @@
+/.venv
+/keys
+/template
+cloudbuild.yaml
+Model.h5
+test.py
+hanomaman.jpg

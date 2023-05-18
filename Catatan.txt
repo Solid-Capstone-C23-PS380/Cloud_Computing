@@ -1,0 +1,48 @@
+di cloud run masukan file requirement.txt install :
+pip install Flask Pillow numpy joblib gunicorn tensorflow matplotlib os google-cloud-storage
+
+langkah : predict basic backend, deploy di cloudrun atau local
+cara local :
+- buat virtual environment pada project install pip install Flask numpy tensorflow matplotlib google-cloud-storage
+- buat project pada GCP
+- buat file app.py dan index.html
+- buat google storage bucket lalu beri akses public padanya public to "allUsers"
+- buat service account pada IAM, lalu buat key dialam service account yang dibuat lalu save keynya ke .json (serviceaccount.json)
+- lalu buat code dan isi sesuai dengan kerja
+
+cara gcp CLOUD RUN :
+- buka google cloud console
+cd namaproject_ada_file_app.py_sama_Dockerfile
+- lalu masukan file app.py Dockerfile requirements.txt
+
+docker build -t wayang-classifier .
+
+docker tag wayang-classifys gcr.io/guitar-chords-classification/wayang-classifier
+
+docker push gcr.io/guitar-chords-classification/wayang-classifier
+
+gcloud run deploy wayang-classifier \
+    --image gcr.io/guitar-chords-classification/wayang-classifier \
+    --platform managed \
+    --memory=4Gi \
+    --allow-unauthenticated
+
+klik 9 buat naruh region dimana 9 = asia-southeast2 (jakarta)
+
+_ 18/05/23 MASIH ERROR PAS DEPLOY GOOGLE CLOUDRUN DARI ENDPOINT MENJADI INTERNAL SERVER ERROR KAYAKNYA GARA" NGAK BISA AKSES GCLOUD STORAGE file serviceaccount.json nnya tidak terdeteksi_
+
+wayang-classifier
+
+masih mengalami internal server error setelah melakukan deploy ke Cloud Run, ada beberapa hal yang perlu diperiksa dan diperbaiki:
+
+1. Pastikan file Model.h5 dan serviceaccount.json sudah terletak dalam direktori yang benar pada container. Dalam Dockerfile, Anda sudah melakukan copy file-file tersebut dengan menggunakan perintah COPY Model.h5 . dan COPY serviceaccount.json .. Pastikan file-file tersebut terletak di direktori yang sama dengan Dockerfile saat membangun kontainer image.
+
+2. Periksa apakah Anda telah memasukkan path file serviceaccount.json yang benar pada kode Flask. Dalam kode Flask Anda, Anda menggunakan path ./serviceaccount.json untuk memuat file serviceaccount.json. Pastikan file tersebut benar-benar ada dalam direktori yang sama dengan file app.py saat berjalan di dalam kontainer.
+
+3. Verifikasi apakah model Keras (Model.h5) yang Anda gunakan kompatibel dengan versi TensorFlow yang digunakan dalam lingkungan kontainer. Jika Anda mengalami masalah kompatibilitas, pertimbangkan untuk menggunakan versi TensorFlow yang sesuai dengan model Anda.
+
+4. Pastikan Anda telah mengaktifkan Cloud Run API dan memiliki izin yang cukup untuk melakukan deploy ke Cloud Run. Periksa juga apakah Anda telah mengonfigurasi gcloud dengan akun yang tepat menggunakan perintah gcloud auth login atau gcloud config set account [ACCOUNT].
+
+5. Periksa apakah ada error atau pesan kesalahan yang ditampilkan di log Cloud Run. Anda dapat melihat log dengan menjalankan perintah gcloud logs read --project=[PROJECT_ID] --service=[SERVICE_NAME] atau melalui konsol GCP.
+
+6. Dengan memeriksa dan memperbaiki hal-hal di atas, Anda dapat mengatasi masalah internal server error pada aplikasi Flask yang di-deploy di Cloud Run.
