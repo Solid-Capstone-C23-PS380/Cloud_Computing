@@ -1,6 +1,6 @@
 #VERSI CLOUDRUN
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, json
 from keras.models import load_model
 from keras.preprocessing import image
 import numpy as np
@@ -43,13 +43,15 @@ def predict():
     pred = model.predict(images)
     preds = lists[np.argmax(pred)]
     
-    classify = preds
     temp_file.close()
-    return jsonify({'result': (preds)})
+    return json.dumps(
+        {
+            "result": preds, 
+            "image_url": image_url
+        })
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
-
 ##
 
 

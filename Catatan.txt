@@ -15,17 +15,17 @@ cara gcp CLOUD RUN :
 cd namaproject_ada_file_app.py_sama_Dockerfile
 - lalu masukan file app.py Dockerfile requirements.txt
 
-docker build -t wayang-classifier .
+docker build -t wayang-doc-packages .
 
-docker tag wayang-class-of-docker gcr.io/guitar-chords-classification/wayang-class-of-docker
+docker tag wayang-doc-packages gcr.io/guitar-chords-classification/wayang-doc-packages
 
-docker push gcr.io/guitar-chords-classification/wayang-class-of-docker
+docker push gcr.io/guitar-chords-classification/wayang-doc-packages
 
-wayang-class-of-docker
-gcloud run deploy wayang-classifiers \
-    --image gcr.io/guitar-chords-classification/wayang-class-of-docker \
+wayang-doc-packages
+gcloud run deploy wayang-predictions \
+    --image gcr.io/guitar-chords-classification/wayang-doc-packages \
     --platform managed \
     --memory=4Gi \
     --allow-unauthenticated
 
-klik 9 buat naruh region dimana 9 = asia-southeast2 (jakarta)
+ketik 9 buat naruh region dimana 9 = asia-southeast2 (jakarta)
