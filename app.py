@@ -44,7 +44,7 @@ def predict():
     preds = lists[np.argmax(pred)]
     
     temp_file.close()
-    return json.dumps(
+    return jsonify(
         {
             "result": preds, 
             "image_url": image_url
