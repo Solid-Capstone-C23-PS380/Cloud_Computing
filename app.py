@@ -1,6 +1,6 @@
 #VERSI CLOUDRUN
 import os
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, jsonify, json, make_response
 from keras.models import load_model
 from keras.preprocessing import image
 import numpy as np
@@ -16,6 +16,13 @@ bucket = client.bucket(bucket_name)
 lists = ['Abimanyu', 'Antasena', 'Bagong', 'Bima', 'Gareng', 'Gatot Kaca', 'Hanoman', 'Krisna', 'Petruk', 'Semar']
 
 model = load_model("./Model.h5")
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'POST'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
 
 @app.route("/predict", methods=['POST'])
 def predict():

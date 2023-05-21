@@ -15,15 +15,14 @@ cara gcp CLOUD RUN :
 cd namaproject_ada_file_app.py_sama_Dockerfile
 - lalu masukan file app.py Dockerfile requirements.txt
 
-docker build -t wayang-doc-packages .
+docker build -t wayang-pred-packages .
 
-docker tag wayang-doc-packages gcr.io/guitar-chords-classification/wayang-doc-packages
+docker tag wayang-pred-packages gcr.io/guitar-chords-classification/wayang-pred-packages
 
-docker push gcr.io/guitar-chords-classification/wayang-doc-packages
+docker push gcr.io/guitar-chords-classification/wayang-pred-packages
 
-wayang-doc-packages
 gcloud run deploy wayang-predictions \
-    --image gcr.io/guitar-chords-classification/wayang-doc-packages \
+    --image gcr.io/guitar-chords-classification/wayang-pred-packages \
     --platform managed \
     --memory=4Gi \
     --allow-unauthenticated

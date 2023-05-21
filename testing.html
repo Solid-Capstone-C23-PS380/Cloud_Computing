@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wayang Prediction</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Machine Learning Prediction</title>
+</head>
+<body>
+    <h1>Machine Learning Prediction</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
+        <input type="submit" value="Predict">
+    </form>
+    <div id="resultContainer"></div>
+
     <script>
-        $(document).ready(function() {
-            $('#uploadForm').on('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    url: 'https://wayang-predict-gcloudrunn-l5wkf7uxfq-et.a.run.app/predict',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        $('#predictionResult').text(response.result);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('https://wayang-predictions-l5wkf7uxfq-et.a.run.app/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var resultContainer = document.getElementById('resultContainer');
+                resultContainer.innerHTML = '';
+                
+                var resultHeading = document.createElement('h2');
+                resultHeading.textContent = 'Prediction Result:';
+                resultContainer.appendChild(resultHeading);
+                
+                var resultText = document.createElement('p');
+                resultText.textContent = 'Prediction: ' + data.result;
+                resultContainer.appendChild(resultText);
+
+                var imageUrl = data.image_url;
+                var resultImage = document.createElement('img');
+                resultImage.src = imageUrl;
+                resultImage.style.maxWidth = '500px';
+                resultContainer.appendChild(resultImage);
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
             });
         });
     </script>
-</head>
-<body>
-    <h1>Wayang Prediction</h1>
-    <form id="uploadForm" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*">
-        <button type="submit">Predict</button>
-    </form>
-    <div id="predictionResult"></div>
 </body>
 </html>
