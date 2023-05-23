@@ -17,12 +17,12 @@ cd namaproject_ada_file_app.py_sama_Dockerfile
 
 docker build -t wayang-pred-packages .
 
-docker tag wayang-pred-packages gcr.io/guitar-chords-classification/wayang-pred-packages
+docker tag wayang-pred-packages gcr.io/semar-cloud-section/wayang-pred-packages
 
-docker push gcr.io/guitar-chords-classification/wayang-pred-packages
+docker push gcr.io/semar-cloud-section/wayang-pred-packages
 
-gcloud run deploy wayang-predictions \
-    --image gcr.io/guitar-chords-classification/wayang-pred-packages \
+gcloud run deploy wayang-prediction \
+    --image gcr.io/semar-cloud-section/wayang-pred-packages \
     --platform managed \
     --memory=4Gi \
     --allow-unauthenticated
