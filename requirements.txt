@@ -1,3 +1,5 @@
 flask
+grpcio
 firebase
 firebase_admin
+google-cloud-core

@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, jsonify
+import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app
 
 app = Flask(__name__)
@@ -26,9 +27,9 @@ def read():
         if result:
             return jsonify(result)
         else:
-            return jsonify({'message': 'Dokumen tidak ditemukan'})
+            return jsonify({'message': 'Document not found'})
     else :
-        return jsonify({'message': 'Parameter tidak ditemukan'})
+        return jsonify({'message': 'Parameter not found'})
 
 
 if __name__ =='__main__':
