@@ -6,7 +6,7 @@ from firebase_admin import credentials, firestore, initialize_app
 app = Flask(__name__)
 
 # Instatiate a Firestore client
-cred = credentials.Certificate('serviceaccount.json')
+cred = credentials.Certificate('./serviceaccount.json')
 initialize_app(cred)
 db = firestore.client()
 wayang_ref = db.collection('wayang_detail')
