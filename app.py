@@ -8,6 +8,7 @@ import tensorflow as tf
 from tensorflow import keras
 from google.cloud import storage
 import tempfile
+import json
 
 # Flask App
 app = Flask(__name__)
@@ -48,15 +49,18 @@ def predict():
 
     pred = model.predict(images)
     preds = labels[np.argmax(pred)]
-    
+    id = np.argmax(pred) + 1
+
     # Delete temp file
     temp_file.close()
 
+    response = {   
+        "message": "success",
+        "result": preds,
+        "id": id.tolist()
+    }
     # return prediction
-    return jsonify(
-        {
-            "result": preds
-        })
+    return jsonify(response)
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
