@@ -13,11 +13,11 @@ wayang_ref = db.collection('wayang_detail')
 @app.after_request
 def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'GET'
+    response.headers['Access-Control-Allow-Methods'] = 'POST'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
 
-@app.route('/list', methods=['GET'])
+@app.route('/list', methods=['POST'])
 def read():
     # Picking parameter from URL to filter
     field_names = request.form.get('field_name')
@@ -39,4 +39,4 @@ def read():
 
 
 if __name__ =='__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8081)))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
