@@ -18,8 +18,9 @@ Backend or Something that reeks of cloud computing
     > 200 OK
     ```json
     {
-        "result": "Gatot Kaca"
-
+        "id": 3,
+        "message": "success",
+        "result": "Bagong"
     }
     ```
 ![](Images/prediction.jpg)
