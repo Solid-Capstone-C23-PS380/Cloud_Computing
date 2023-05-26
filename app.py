@@ -10,6 +10,13 @@ initialize_app(cred)
 db = firestore.client()
 wayang_ref = db.collection('wayang_detail')
 
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
+
 @app.route('/list', methods=['GET'])
 def read():
     # Picking parameter from URL to filter
