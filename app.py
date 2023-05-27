@@ -54,7 +54,7 @@ def read_all():
     for doc in docs:
         data = doc.to_dict()
         data['image_url'] = data['image_url'][0]
-        del data['detail']
+        del data['description']
         results.append(data)
 
     return jsonify(results)
