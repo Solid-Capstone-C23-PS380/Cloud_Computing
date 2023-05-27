@@ -60,7 +60,7 @@ def read_all():
     return jsonify(results)
 
 # Create a route for reading all data video
-@app.route('/listvideo', methods=['POST'])
+@app.route('/videolist', methods=['POST'])
 def read_video():
     docs = video_ref.stream()
     if docs:
