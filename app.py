@@ -53,7 +53,7 @@ def read_all():
     results = []
     for doc in docs:
         data = doc.to_dict()
-        data['gambar'] = data['gambar'][0]
+        data['image_url'] = data['image_url'][0]
         del data['detail']
         results.append(data)
 
