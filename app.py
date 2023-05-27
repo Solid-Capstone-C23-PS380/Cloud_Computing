@@ -48,16 +48,15 @@ def read():
 # Create a route for reading data list(all) wayang
 @app.route('/wayanglist', methods=['POST'])
 def read_all():
-    docs = wayang_ref.stream()
-
-    results = []
-    for doc in docs:
-        data = doc.to_dict()
-        data['photo_url'] = data['photo_url'][0]
-        del data['description']
-        results.append(data)
-
-    return jsonify(results)
+    docs = video_ref.stream()
+    if docs:
+        results = []
+        for doc in docs:
+            data = doc.to_dict()
+            results.append(data)
+        return jsonify(results)
+    else:
+        return jsonify({'message': 'Document not found'})
 
 # Create a route for reading all data video
 @app.route('/videolist', methods=['POST'])
