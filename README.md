@@ -27,7 +27,7 @@ Backend or Something that reeks of cloud computing
 
 ### Wayang Details or All API
 #### Endpoint:
-> https://list-of-wayang-mrlpwmp4cq-et.a.run.app
+> https://wayang-backend-mrlpwmp4cq-et.a.run.app
 
 ### Lists:
 * URL
