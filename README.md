@@ -115,11 +115,13 @@ Backend or Something that reeks of cloud computing
         {
             "id": 1,
             "name": "Wayang kulit nasehat Semar kepada anak cucunya",
+            "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video1.jpg",
             "video_url": "https://storage.googleapis.com/wayang-storage/vid/video1.mp4"
         },
         {
             "id": 2,
             "name": "Pitutur Semar tentang Kehidupan ",
+            "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video2.jpg",
             "video_url": "https://storage.googleapis.com/wayang-storage/vid/video2.mp4"
         }
     ]
