@@ -48,7 +48,7 @@ def read():
 # Create a route for reading data list(all) wayang
 @app.route('/wayanglist', methods=['POST'])
 def read_all():
-    docs = video_ref.stream()
+    docs = wayang_ref.stream()
     if docs:
         results = []
         for doc in docs:
