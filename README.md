@@ -140,7 +140,9 @@ Backend or Something that reeks of cloud computing
     ```json
     {
         "id": 2,
-        "name": "Pitutur Semar tentang Kehidupan ",
+        "name": "Pitutur Semar tentang Kehidupan",
+        "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video2.jpg",
+        "video_duration": "7:37",
         "video_url": "https://storage.googleapis.com/wayang-storage/vid/video2.mp4"
     }
     ```
