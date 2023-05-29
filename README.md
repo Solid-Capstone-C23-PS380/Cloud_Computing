@@ -116,13 +116,17 @@ Backend or Something that reeks of cloud computing
             "id": 1,
             "name": "Wayang kulit nasehat Semar kepada anak cucunya",
             "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video1.jpg",
-            "video_url": "https://storage.googleapis.com/wayang-storage/vid/video1.mp4"
+            "video_duration": "3:30",
+            "video_id": "sKMw4uQLOHk",
+            "video_url": "https://youtu.be/sKMw4uQLOHk"
         },
         {
             "id": 2,
-            "name": "Pitutur Semar tentang Kehidupan ",
+            "name": "Pitutur Semar tentang Kehidupan",
             "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video2.jpg",
-            "video_url": "https://storage.googleapis.com/wayang-storage/vid/video2.mp4"
+            "video_duration": "7:37",
+            "video_id": "gQ9j_2PKdWE",
+            "video_url": "https://youtu.be/gQ9j_2PKdWE"
         }
     ]
     ```
@@ -143,7 +147,8 @@ Backend or Something that reeks of cloud computing
         "name": "Pitutur Semar tentang Kehidupan",
         "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video2.jpg",
         "video_duration": "7:37",
-        "video_url": "https://storage.googleapis.com/wayang-storage/vid/video2.mp4"
+        "video_id": "gQ9j_2PKdWE",
+        "video_url": "https://youtu.be/gQ9j_2PKdWE"
     }
     ```
 ![](Images/videodetails.jpg)
