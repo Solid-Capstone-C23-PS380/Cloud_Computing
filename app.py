@@ -10,6 +10,7 @@ initialize_app(cred)
 db = firestore.client()
 wayang_ref = db.collection('wayang_detail')
 video_ref = db.collection('video_pementasan')
+event_ref = db.collection('wayang_event')
 
 @app.after_request
 def add_cors_headers(response):
@@ -98,5 +99,49 @@ def read_one_video():
     else :
         return jsonify({'message': 'Parameter not found'})
         
+
+# Create a route for read all event data
+@app.route('/eventlist', methods=['POST'])
+def read_event():
+    docs = event_ref.stream()
+    if docs:
+        results = []
+        for doc in docs:
+            data = doc.to_dict()
+            results.append(data)
+        return jsonify(results)
+    else:
+        return jsonify({'message': 'Document not found'})
+
+# Create a route for read one event data
+@app.route('/event', methods=['POST'])
+def read_one_event():
+    # Picking parameter from URL to filter must Integer
+    field_id = request.form.get('field_id')
+    
+    try:
+        field_id = int(field_id)
+    except ValueError:
+        return jsonify({'message': 'Parameter must Integer'})
+    
+    if field_id:
+        query = event_ref.where('id', '==', field_id).limit(1)
+        docs = query.stream()
+
+        result = []
+        for doc in docs:
+            result = doc.to_dict()
+            break
+
+        if result:
+            return jsonify(result)
+        else:
+            return jsonify({'message': 'Document not found'})
+    else :
+        return jsonify({'message': 'Parameter not found'})    
+
+
+
+
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
