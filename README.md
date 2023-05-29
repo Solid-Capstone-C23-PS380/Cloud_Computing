@@ -13,7 +13,7 @@ Backend or Something that reeks of cloud computing
 * Method
     - POST
 * Request Body
-    * `file` as file, must be valid image file, max size <= 2MB
+    * `file` as file, must be valid image file (png, jpg, jpeg), max size <= 2MB
 * Response
     > 200 OK
     ```json
@@ -152,3 +152,55 @@ Backend or Something that reeks of cloud computing
     }
     ```
 ![](Images/videodetails.jpg)
+
+### List all of Events:
+* URL
+    - /eventlist
+* Method
+    - POST
+* Request Body
+    * -
+* Response
+    > 200 OK
+    ```json
+    [
+        {
+            "description": "Datanglah Ke Pagelaran Wayang Kulit dengan tema \"Lakon Sembodro Larung\" yang akan dilaksanakan setiap Hari Sabtu Jam 19.00 WIB - Selesai di Sekretariat Sanggar Seni Cipat Budaya Sari Laras, Dusun Cemetuk. Desa Cluring, Kecamatan Cluring Banyuwangi",
+            "id": 2,
+            "name": "Pagelaran Wayang Kulit \"Lakon Sembodro Larung\"",
+            "photo_url": "https://storage.googleapis.com/wayang-storage/pic/event/event2.jpg",
+            "price": 30000,
+            "time": "Sat, 03 Jun 2023 10:00:00 GMT"
+        },
+        {
+            "description": "Pegelaran Wayang kulit Episode RAMAYANA setiap hari selasa Jam 20.00 - 22.00 WIB lokasi di Pendapa Timur  Museum Sonobudoyo Yogyakarta",
+            "id": 1,
+            "name": "Pegelaran Wayang Kulit Sonobudoyo",
+            "photo_url": "https://storage.googleapis.com/wayang-storage/pic/event/event1.jpg",
+            "price": 35000,
+            "time": "Tue, 30 May 2023 11:00:00 GMT"
+        }
+    ]
+    ```
+![](Images/listallevent.jpg)
+
+### Details of Event:
+* URL
+    - /event
+* Method
+    - POST
+* Request Body
+    * `field_id` as integer, must be valid id
+* Response
+    > 200 OK
+    ```json
+    {
+        "id": 2,
+        "name": "Pitutur Semar tentang Kehidupan",
+        "photo_url": "https://storage.googleapis.com/wayang-storage/pic/ssvideo/video2.jpg",
+        "video_duration": "7:37",
+        "video_id": "gQ9j_2PKdWE",
+        "video_url": "https://youtu.be/gQ9j_2PKdWE"
+    }
+    ```
+![](Images/eventdetails.jpg)
