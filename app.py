@@ -141,7 +141,40 @@ def read_one_event():
         return jsonify({'message': 'Parameter not found'})    
 
 
+# Update a route for update data event / buying tickets
+@app.route('/ticket_event/<int:event_id>', methods=['POST'])
+def update_event(event_id):
+
+    tickets_bought = request.form.get('tickets_bought')
+    tickets_bought = int(tickets_bought)
+
+    if event_id:
+        query = event_ref.where('id', '==', event_id).limit(1)
+        docs = query.stream()
+
+        result = []
+        for doc in docs:
+            result = doc.to_dict()
+            if result['ticket_count'] == 0:
+                return jsonify({'message': 'Tickets sold out'})
+            if result['ticket_count'] < tickets_bought:
+                return jsonify({'message': 'Not enough tickets'})
+
+            result['ticket_count'] = result['ticket_count'] - tickets_bought
+            doc.reference.update({'ticket_count': result['ticket_count']})
+            break
+        if result:
+            return jsonify("message : success")
+        else:
+            return jsonify({'message': 'Document not found'})
+    else :
+        return jsonify({'message': 'Parameter not found'})
+    
+
 
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+
+
+
