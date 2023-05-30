@@ -9,8 +9,6 @@ COPY app.py .
 
 COPY Model.h5 .
 
-COPY serviceaccount.json .
-
 ENV PORT=8080
 
 CMD ["python", "app.py"]

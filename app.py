@@ -6,9 +6,7 @@ from keras.preprocessing import image
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from google.cloud import storage
 import tempfile
-import json
 
 # Flask App
 app = Flask(__name__)
