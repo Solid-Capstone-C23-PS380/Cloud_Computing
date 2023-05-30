@@ -1,28 +1,18 @@
-di cloud run masukan file requirement.txt install :
-pip install Flask Pillow numpy joblib gunicorn tensorflow matplotlib os google-cloud-storage
-
-langkah : predict basic backend, deploy di cloudrun atau local
-cara local :
-- buat virtual environment pada project install pip install Flask numpy tensorflow matplotlib google-cloud-storage
-- buat project pada GCP
-- buat file app.py dan index.html
-- buat google storage bucket lalu beri akses public padanya public to "allUsers"
-- buat service account pada IAM, lalu buat key dialam service account yang dibuat lalu save keynya ke .json (serviceaccount.json)
-- lalu buat code dan isi sesuai dengan kerja
-
 cara gcp CLOUD RUN :
 - buka google cloud console
 cd namaproject_ada_file_app.py_sama_Dockerfile
-- lalu masukan file app.py Dockerfile requirements.txt
+- lalu masukan file app.py Dockerfile requirements.txt sama Model.h5
 
-docker build -t wayang-pred-packages .
+buka Google Cloud Console
 
-docker tag wayang-pred-packages gcr.io/semar-cloud-section/wayang-pred-packages
+docker build -t wayang-predict-package .
 
-docker push gcr.io/semar-cloud-section/wayang-pred-packages
+docker tag wayang-predict-package gcr.io/semar-cloud-section/wayang-predict-package
+
+docker push gcr.io/semar-cloud-section/wayang-predict-package
 
 gcloud run deploy wayang-prediction \
-    --image gcr.io/semar-cloud-section/wayang-pred-packages \
+    --image gcr.io/semar-cloud-section/wayang-predict-package\
     --platform managed \
     --memory=4Gi \
     --allow-unauthenticated
