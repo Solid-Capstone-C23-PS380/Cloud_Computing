@@ -51,13 +51,16 @@ def predict():
     preds = labels[np.argmax(pred)]
     id = np.argmax(pred) + 1
 
+    score = np.round(np.max(pred), 3)
+
     # Delete temp file
     temp_file.close()
 
     response = {   
         "message": "success",
         "result": preds,
-        "id": id.tolist()
+        "id": id.tolist(),
+        "score" : score.tolist()
     }
     # return prediction
     return jsonify(response)
