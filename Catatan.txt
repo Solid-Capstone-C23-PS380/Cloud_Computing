@@ -7,14 +7,15 @@ buka Google Cloud Console
 
 docker build -t wayang-predict-package .
 
-docker tag wayang-predict-package gcr.io/semar-cloud-section/wayang-predict-package
+docker tag wayang-predict-package gcr.io/semar-cloud-section/wayang-predict-package:latest
 
-docker push gcr.io/semar-cloud-section/wayang-predict-package
+docker push gcr.io/semar-cloud-section/wayang-predict-package:latest
 
 gcloud run deploy wayang-prediction \
-    --image gcr.io/semar-cloud-section/wayang-predict-package\
+    --image gcr.io/semar-cloud-section/wayang-predict-package:latest\
     --platform managed \
     --memory=4Gi \
-    --allow-unauthenticated
+    --allow-unauthenticated \
+    --region=asia-southeast2
 
 ketik 9 buat naruh region dimana 9 = asia-southeast2 (jakarta)
