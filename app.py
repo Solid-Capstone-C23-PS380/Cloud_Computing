@@ -153,13 +153,25 @@ def read_one_event():
 # Update a route for update data event / buying tickets
 @app.route('/ticket_event/<int:event_id>', methods=['POST'])
 def update_event(event_id):
+    # Picking parameter from URL to filter must Integer and more requirements each field
     tickets_bought = request.form.get('tickets_bought')
+    if tickets_bought == '':
+        return jsonify({'message': 'Tickets bought is required'})
     tickets_bought = int(tickets_bought)
-    name = request.form.get('name')
-    email = request.form.get('email')
-    payment_method = request.form.get('payment_method')
-    file = request.files['file']
 
+    name = request.form.get('name')
+    if name == '':
+        return jsonify({'message': 'Name is required'})
+    
+    email = request.form.get('email')
+    if email == '':
+        return jsonify({'message': 'Email is required'})
+    
+    payment_method = request.form.get('payment_method')
+    if payment_method == '':
+        return jsonify({'message': 'Payment method is required'})
+    
+    file = request.files['file']
     if file.filename == '':
         return jsonify({'message': 'No file selected'})
     
@@ -221,16 +233,17 @@ def upload_file():
     file = request.files['file']
     
     uid = request.form['uid']
+    if uid == '':
+        return jsonify({'message': 'No uid selected'})
 
+    # Save temp file to server and rename formatted file
     new_filename = uid + '.jpg'
-
     file.filename = new_filename
-
     temp_file1 = tempfile.NamedTemporaryFile(delete=False)
     file.save(temp_file1.name)
-
     if file.filename == '':
         return jsonify({'message': 'No file selected'})
+    
     blob = bucket.blob('pic/profile/' + file.filename)
     blob.upload_from_filename(temp_file1.name)
     # get public url for shown image
