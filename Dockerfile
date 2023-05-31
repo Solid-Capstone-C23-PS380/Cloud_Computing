@@ -7,7 +7,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py .
 
-COPY serviceaccount.json .
+COPY serviceaccountfb.json .
+
+COPY serviceaccountgcs.json .
 
 ENV PORT=8080
 
