@@ -6,9 +6,7 @@ from keras.preprocessing import image
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from google.cloud import storage
 import tempfile
-import json
 
 # Flask App
 app = Flask(__name__)
@@ -41,7 +39,7 @@ def predict():
     file.save(temp_file.name)
     
     # Predict Image
-    image = keras.preprocessing.image.load_img(temp_file.name, target_size=(150, 150))
+    image = keras.preprocessing.image.load_img(temp_file.name, target_size=(299, 299))
     x = keras.preprocessing.image.img_to_array(image)
     x = x / 255.0
     x = np.expand_dims(x, axis=0)
