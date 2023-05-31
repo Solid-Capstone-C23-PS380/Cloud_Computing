@@ -60,8 +60,13 @@ def predict():
         "id": id.tolist(),
         "score" : score.tolist()
     }
-    # return prediction
-    return jsonify(response)
+    if score > 0.5 and score <= 1.0:
+        # return prediction
+        return jsonify(response)
+    else:
+        return jsonify({"message": "predict failed"})
+    
+    
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
