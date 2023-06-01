@@ -151,9 +151,14 @@ def read_one_event():
 
 
 # Update a route for update data event / buying tickets
-@app.route('/ticket_event/<int:event_id>', methods=['POST'])
-def update_event(event_id):
+@app.route('/ticket_event', methods=['POST'])
+def update_event():
     # Picking parameter from URL to filter must Integer and more requirements each field
+    event_id = request.form.get('event_id')
+    if event_id == '':
+        return jsonify({'message': 'Event id is required'})
+    event_id = int(event_id)
+    
     tickets_bought = request.form.get('tickets_bought')
     if tickets_bought == '':
         return jsonify({'message': 'Tickets bought is required'})
