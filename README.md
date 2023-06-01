@@ -207,11 +207,11 @@ Backend or Something that reeks of cloud computing
 
 ### Buy a Ticket for Event:
 * URL
-    - /ticket_event/<<int:event_id>> 
-        - (event_id must be valid id from eventlist id example: `/ticket_event/1`)
+    - /ticket_event
 * Method
     - POST
 * Request Body
+    * `event_id` as integer, must be valid id from eventlist  
     * `tickets_bought` as integer, must be greater than 0 and must be filled
     * `name` as string, must be filled
     * `email` as string, must be filled
@@ -225,16 +225,16 @@ Backend or Something that reeks of cloud computing
         "data": {
             "email": "sukoshi7869@gmai.com",
             "event_id": 2,
-            "method": "DANA - 087810871445 (a.n. Muhammad Nizar)",
-            "name": "Sukoshi no Afureru",
-            "payment_picture": "https://storage.googleapis.com/wayang-storage/pic/receipt/buy92187.jpeg",
-            "ticket_bought": 6,
-            "total_count": 180000
+            "method": "Dana - 089507741841 (a.n. Bahrum Nisar)",
+            "name": "Nizares no Sukoshi",
+            "payment_picture": "https://storage.googleapis.com/wayang-storage/pic/receipt/resiiiiakwkow.jpeg",
+            "ticket_bought": 4,
+            "total_count": 120000
         },
         "message": "success"
     }
     ```
-![](Images/beliticket.jpg)
+![](Images/buyticket.jpg)
 
 ### Upload Photo Profile:
 * URL
