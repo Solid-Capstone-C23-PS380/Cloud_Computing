@@ -204,3 +204,70 @@ Backend or Something that reeks of cloud computing
     }
     ```
 ![](Images/eventdetails.jpg)
+
+### Buy a Ticket for Event:
+* URL
+    - /ticket_event/<<int:event_id>> 
+        - (event_id must be valid id from eventlist id example: `/ticket_event/1`)
+* Method
+    - POST
+* Request Body
+    * `tickets_bought` as integer, must be greater than 0 and must be filled
+    * `name` as string, must be filled
+    * `email` as string, must be filled
+    * `payment_method` as string, must be filled
+    * `file` as file, must be filled
+
+* Response
+    > 200 OK
+    ```json
+    {
+        "data": {
+            "email": "sukoshi7869@gmai.com",
+            "event_id": 2,
+            "method": "DANA - 087810871445 (a.n. Muhammad Nizar)",
+            "name": "Sukoshi no Afureru",
+            "payment_picture": "https://storage.googleapis.com/wayang-storage/pic/receipt/buy92187.jpeg",
+            "ticket_bought": 6,
+            "total_count": 180000
+        },
+        "message": "success"
+    }
+    ```
+![](Images/beliticket.jpg)
+
+### Upload Photo Profile:
+* URL
+    - /upload_profile
+* Method
+    - POST
+* Request Body
+    * `file` as file, must be valid image file (png, jpg, jpeg), max size <= 2MB  
+        - **if uploaded default format its `.jpg`**
+    * `uid` as string, must be valid id from firebase auth of each account
+        - ![](Images/getuid.jpg)
+* Response
+    > 200 OK
+    ```json
+    {
+        "image_url": "https://storage.googleapis.com/wayang-storage/pic/profile/B1b8BSRtvQgFoeQ9d6W7Z7JB29i1.jpg",
+        "message": "success"
+    }
+    ```
+![](Images/uploadprofile.jpg)
+
+### Get Photo Profile
+* URL
+    - Just enter url below change [uid from firebase auth] to your uid from firebase account
+    - `"https://storage.googleapis.com/wayang-storage/pic/profile/[uid from firebase auth].jpg"`
+* Method
+    - -
+* Request Body
+    * -
+* Response
+    ```html
+    read image with html <img src="https://storage.googleapis.com/wayang-storage/pic/profile/B1b8BSRtvQgFoeQ9d6W7Z7JB29i1.jpg" width="100" height="100">
+    ```
+    - Example view the image
+    
+    <img src="https://storage.googleapis.com/wayang-storage/pic/profile/B1b8BSRtvQgFoeQ9d6W7Z7JB29i1.jpg" width="250" height="250">
