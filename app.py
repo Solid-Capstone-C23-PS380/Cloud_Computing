@@ -250,6 +250,7 @@ def upload_file():
         return jsonify({'message': 'No file selected'})
     
     blob = bucket.blob('pic/profile/' + file.filename)
+    blob.cache_control = 'no-cache'
     blob.upload_from_filename(temp_file1.name)
     # get public url for shown image
     image_url = blob.public_url
@@ -259,8 +260,7 @@ def upload_file():
     }
     temp_file1.close()   
     return jsonify(response)
-
-
+   
 
 if __name__ =='__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
