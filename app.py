@@ -25,7 +25,7 @@ bucket = storage_client.get_bucket(bucket_name)
 def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'POST'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Cache-Control'
     return response
 
 # Create a route for reading data detail wayang
