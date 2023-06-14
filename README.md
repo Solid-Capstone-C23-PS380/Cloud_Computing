@@ -15,6 +15,14 @@
     * View Profile/data
 
 ## API Docoumentation
+- Using python as programming language
+- Using Flask as backend
+- Using Firebase Auth for authentication
+- Using Cloud Storage for storage
+- Using Cloud Firestore for database (NO SQL)
+- Using Cloud run for deployment
+- Using docker for containerization
+- Using Postman for testing API
 
 ### Wayang Prediction API
 #### Endpoint:
