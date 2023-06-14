@@ -1,5 +1,18 @@
 # Cloud_Computing
-Backend or Something that reeks of cloud computing
+<p align="center">
+  <img src="Images/architecture.png" width="580" title="cloudachitecture">
+</p>
+<p align="center"><b>Cloud Architecture</b></p>
+
+1. The first firebase authentification flow to login or register, then the user can choose what to do.
+
+2. The second option is prediction which is deployed on the cloud run and container registry using docker to store the packages needed for the prediction backend.
+
+3. The third option is the backend for the profile and user data just like the first backend, using cloud run to deploy the backend and container registry using docker to store the packages needed to upload pictures to the profile.
+
+    * Buy Puppet Tickets
+    * Upload Profile Photo
+    * View Profile/data
 
 ## API Docoumentation
 
